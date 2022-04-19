@@ -1,0 +1,77 @@
+<meta charset="UTF-8">
+<title> Loteria - CEF </title>
+
+<center>
+<head>
+    <h2> ☘   Sorteio da Mega-Sena - AV@  ☘ </h2> <br>
+    <img src="caixalogo.jpg" alt="CaixaEconomicaFederal" width="400" height="150">
+     <br><br>
+</head>
+        <input type="submit" value="Clique aqui para realizar sua aposta!" id="adicionar" />
+    </center>
+
+
+<script>
+
+    let sorteados = []
+    let apostados = []
+
+    sortearNumero();
+
+    let soma = 0;
+
+    function apostarNumero() {
+        for (let i = 0; i < 6; i++) {
+            let numero = parseInt(prompt("Qual número deseja apostar?"));
+            apostados.push(numero);
+            console.log(apostados);
+
+        }
+
+        for (let i = 0; i < sorteados.length; i++) {
+            for (let j = 0; j < apostados.length; j++) {
+                if (sorteados[j] == apostados[i]) {
+                    alert("Você acertou o número " + sorteados[j]);
+                    soma++;
+                }
+            }
+        }
+
+        alert("Você acertou: " + soma + " números");
+        
+        if(soma == 6){
+            alert("Você acertou tudo! Você ganhou na Mega-Sena!");
+        }else if(soma == 5){
+            alert("Você acertou a quina!");
+        }else if(soma == 4){
+            alert("Você acertou a quadra!");
+        }
+    }
+
+    function sortearNumero() {
+
+        for (let i = 0; i < 6; i++) {
+            let numero = Math.round(Math.random() * 60);
+            for (let j = 0; j < sorteados.length; j++){
+                while (numero == sorteados[j]) {
+                    numero++
+                }
+            sorteados.push(numero);
+             }
+        }
+
+        console.log(sorteados);
+    }
+
+    let botaoAdicionar = document.getElementById("adicionar");
+    botaoAdicionar.onclick = apostarNumero;
+
+    for(let i = 0; i < sorteados.length; i++) {
+        for(let j = 0; j < apostados.length; j++) {
+            if(sorteados[j] == apostados[i]) {   
+                alert(`Você acertou o número ${sorteados[j]}`);
+            }
+        }
+    }
+
+</script>
